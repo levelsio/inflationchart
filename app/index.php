@@ -1451,13 +1451,16 @@
 				});
 
 				$('.legend .interactive_legend').bind('click',function(e) {
-					e.stopPropagation();
 					$(this).find('input[type="checkbox"]').click();
 				});
 
-				$('.legend input[type="checkbox"]').bind('change',function(e) {
-					console.log("$('.legend input[type=checkbox]').bind('change',function(e) {");
+				$('.legend input[type="checkbox"]').bind('click',function(e) {
 					e.stopPropagation();
+				});
+
+				$('.legend input[type="checkbox"]').bind('change',function(e) {
+					console.log('1');
+					console.log("$('.legend input[type=checkbox]').bind('change',function(e) {");
 					show_stock=$('.legend input[type="checkbox"].show_stock:checked').length;
 					show_divided_by=$('.legend input[type="checkbox"].show_divided_by:checked').length;
 					show_adjusted=$('.legend input[type="checkbox"].show_adjusted:checked').length;
@@ -2426,7 +2429,7 @@
 
 
 
-			<span class="show_stock_legend">
+			<span class="show_stock_legend interactive_legend">
 				<input type="checkbox" class="show_stock" <?if($show_stock){?>checked<?}?>>
 				<span style="color:rgb(43,222,115)">
 					<!-- 🟢 -->
