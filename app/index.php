@@ -340,22 +340,12 @@
 				foreach($stocks as $stock => $label) {
 					?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 						<url>
-							<loc>
-								https://inflationchart.com/<?=$stock?>-in-<?=$adjuster?>
-
-							</loc>
-							<changefreq>
-								weekly
-							</changefreq>
-							<priority>
-								1
-							</priority>
-							<lastmod>
-								<?
+							<loc>https://inflationchart.com/<?=$stock?>-in-<?=$adjuster?></loc>
+							<changefreq></changefreq>
+							<priority></priority>
+							<lastmod><?
 								echo date('c',filemtime(__DIR__.'/../data/inflationchart.db'));
-								?>
-							
-							</lastmod>
+							?></lastmod>
 						</url>
 					</urlset><?
 				}
