@@ -139,20 +139,27 @@
 	// </config>
 
 	// <get data>
-		/* make sure you check if $adjuster_selected and $stock selected are safe from $_GET[] user input above */
-		$query=$db->prepare("SELECT epoch,".$adjuster_selected.",".$stock_selected." FROM inflationchart WHERE epoch>:epoch ORDER BY epoch ASC");
-		if($_GET['time']=='all') {
-			$query->bindValue(':epoch',0);
-		}
-		else if($_GET['time']!=$time_selected_default && !empty($_GET['time'])) {
-			$query->bindValue(':epoch',strtotime('-'.$_GET['time']));
+		if($_GET['url']=='sitemap.xml') {
+			$query=$db->prepare("SELECT * FROM inflationchart ORDER BY epoch ASC");
+			$query->execute();
+			$data=$query->fetchAll(PDO::FETCH_ASSOC);
 		}
 		else {
-			// default
-			$query->bindValue(':epoch',strtotime("-".$time_selected_default));
+			/* make sure you check if $adjuster_selected and $stock selected are safe from $_GET[] user input above */
+			$query=$db->prepare("SELECT epoch,".$adjuster_selected.",".$stock_selected." FROM inflationchart WHERE epoch>:epoch ORDER BY epoch ASC");
+			if($_GET['time']=='all') {
+				$query->bindValue(':epoch',0);
+			}
+			else if($_GET['time']!=$time_selected_default && !empty($_GET['time'])) {
+				$query->bindValue(':epoch',strtotime('-'.$_GET['time']));
+			}
+			else {
+				// default
+				$query->bindValue(':epoch',strtotime("-".$time_selected_default));
+			}
+			$query->execute();
+			$data=$query->fetchAll(PDO::FETCH_ASSOC);
 		}
-		$query->execute();
-		$data=$query->fetchAll(PDO::FETCH_ASSOC);
 	// </get data>
 
 
@@ -225,6 +232,7 @@
 				}
 			}
 		}
+
 
 		// find newest start time $newestStartTime above and remove older data than that so we don't have weirdly scaled charts if combo data of datasets that have lots of data and few data
 		$newData=array();
@@ -329,12 +337,13 @@
 			header('Content-type: application/xml');
 			echo '<?xml version="1.0" encoding="UTF-8"?>'?>
 			<?
-			foreach($adjusters as $adjuster) {
-				foreach($stocks as $stock) {
+			foreach($adjusters as $adjuster => $label) {
+				foreach($stocks as $stock => $label) {
 					?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 						<url>
 							<loc>
 								https://inflationchart.com/<?=$stock?>-in-<?=$adjuster?>
+
 							</loc>
 							<changefreq>
 								weekly
@@ -344,8 +353,9 @@
 							</priority>
 							<lastmod>
 								<?
-								echo date('c',$dataEndTimes[$adjuster.'_adj_'.$stock]);
+								echo date('c',filemtime(__DIR__.'/../data/inflationchart.db'));
 								?>
+							
 							</lastmod>
 						</url>
 					</urlset><?
