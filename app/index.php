@@ -414,7 +414,7 @@
 	$page['title']='💰'."Inflation Chart: The stock market adjusted for the US-dollar money supply M1 (and more) (by @levelsio)";
 	$page['description']="This chart shows the price of stock markets adjusted for inflation of the US dollar money supply in M1, M2 and the money base (MB).".'. Money printer goes brrrrrrrrr.';
 
-	ob_start("sanitizeOutput");
+	// ob_start("sanitizeOutput");
 
 	if($_GET['adjuster'] || $_GET['stock']) {
 		$page['title']='💰'.$stocks[$_GET['stock']].' Price in '.$adjusters[$_GET['adjuster']];
@@ -1294,7 +1294,7 @@
 			B: function() {
 				var H = jsdate.getUTCHours() * 36e2;
 				var i = jsdate.getUTCMinutes() * 60;
-				var s = jsdate.getUTCSeconds(); // Seconds
+				var s = jsdate.getUTCSeconds();
 				return _pad(Math.floor((H + i + s + 36e2) / 86.4) % 1e3, 3);
 			},
 			g: function() {
@@ -1328,7 +1328,7 @@
 				var a = new Date(f.Y(), 0);
 				var c = Date.UTC(f.Y(), 0);
 				var b = new Date(f.Y(), 6);
-				var d = Date.UTC(f.Y(), 6); // Jul 1 UTC
+				var d = Date.UTC(f.Y(), 6);
 				return ((a - c) !== (b - d)) ? 1 : 0;
 			},
 			O: function() {
