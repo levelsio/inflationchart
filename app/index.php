@@ -1191,16 +1191,11 @@
 			
 			var that = this;
 			var jsdate, f;
-			// Keep this here (works, but for code commented-out below for file size reasons)
-			// var tal= [];
 			var txt_words = [
 			'Sun', 'Mon', 'Tues', 'Wednes', 'Thurs', 'Fri', 'Satur',
 			'January', 'February', 'March', 'April', 'May', 'June',
 			'July', 'August', 'September', 'October', 'November', 'December'
 			];
-			// trailing backslash -> (dropped)
-			// a backslash followed by any character (including backslash) -> the character
-			// empty string -> empty string
 			var formatChr = /\\?(.?)/gi;
 			var formatChrCb = function(t, s) {
 			return f[t] ? f[t]() : s;
@@ -1213,7 +1208,6 @@
 			return n;
 			};
 			f = {
-			// Day
 			d: function() { // Day of month w/leading 0; 01..31
 				return _pad(f.j(), 2);
 			},
@@ -1247,14 +1241,12 @@
 				return Math.round((a - b) / 864e5);
 			},
 
-			// Week
 			W: function() { // ISO-8601 week number
 				var a = new Date(f.Y(), f.n() - 1, f.j() - f.N() + 3);
 				var b = new Date(a.getFullYear(), 0, 4);
 				return _pad(1 + Math.round((a - b) / 864e5 / 7), 2);
 			},
 
-			// Month
 			F: function() { // Full month name; January...December
 				return txt_words[6 + f.n()];
 			},
@@ -1273,7 +1265,6 @@
 				.getDate();
 			},
 
-			// Year
 			L: function() { // Is leap year?; 0 or 1
 				var j = f.Y();
 				return j % 4 === 0 & j % 100 !== 0 | j % 400 === 0;
@@ -1293,7 +1284,6 @@
 				.slice(-2);
 			},
 
-			// Time
 			a: function() { // am or pm
 				return jsdate.getHours() > 11 ? 'pm' : 'am';
 			},
@@ -1303,9 +1293,7 @@
 			},
 			B: function() { // Swatch Internet time; 000..999
 				var H = jsdate.getUTCHours() * 36e2;
-				// Hours
 				var i = jsdate.getUTCMinutes() * 60;
-				// Minutes
 				var s = jsdate.getUTCSeconds(); // Seconds
 				return _pad(Math.floor((H + i + s + 36e2) / 86.4) % 1e3, 3);
 			},
@@ -1331,23 +1319,15 @@
 				return _pad(jsdate.getMilliseconds() * 1000, 6);
 			},
 
-			// Timezone
 			e: function() { // Timezone identifier; event.g. Atlantic/Azores, ...
-				// The following works, but requires inclusion of the very large
-				// timezone_abbreviations_list() function.
 				/*				return that.date_default_timezone_get();
 				 */
 				throw 'Not supported (see source code of date() for timezone on how to add support)';
 			},
 			I: function() { // DST observed?; 0 or 1
-				// Compares Jan 1 minus Jan 1 UTC to Jul 1 minus Jul 1 UTC.
-				// If they are not equal, then DST is observed.
 				var a = new Date(f.Y(), 0);
-				// Jan 1
 				var c = Date.UTC(f.Y(), 0);
-				// Jan 1 UTC
 				var b = new Date(f.Y(), 6);
-				// Jul 1
 				var d = Date.UTC(f.Y(), 6); // Jul 1 UTC
 				return ((a - c) !== (b - d)) ? 1 : 0;
 			},
@@ -1361,8 +1341,6 @@
 				return (O.substr(0, 3) + ':' + O.substr(3, 2));
 			},
 			T: function() { // Timezone abbreviation; event.g. EST, MDT, ...
-				// The following works, but requires inclusion of the very
-				// large timezone_abbreviations_list() function.
 				/*				var abbr, i, os, _default;
 				if (!tal.length) {
 				tal = that.timezone_abbreviations_list();
@@ -1392,7 +1370,6 @@
 				return -jsdate.getTimezoneOffset() * 60;
 			},
 
-			// Full Date/Time
 			c: function() { // ISO-8601 date.
 				return 'Y-m-d\\TH:i:sP'.replace(formatChr, formatChrCb);
 			},
@@ -1425,13 +1402,11 @@
 					updateSelected();
 					updateUrl();
 					window.location.reload();
-					// updateChart();
 				});
 				$('select.stock_selector').bind('change',function() {
 					updateSelected();
 					updateUrl();
 					window.location.reload();
-					// updateChart();
 				});
 				$('select.time_selector').bind('change',function() {
 					updateSelected();
@@ -1476,7 +1451,7 @@
 
 		/* <animation> */
 
-			// <find currently visible dataset of stock and animate it>
+			/* <find currently visible dataset of stock and animate it> */
 				function animateStockLine() {
 					is_animating=true;
 
@@ -1497,8 +1472,6 @@
 					chart.data.datasets.forEach(function(dataset) {
 						
 						if(dataset.id==adjuster_selected+'_adjuster') {
-							// console.log(chart.data.datasets[animationFindDatasetIndexIterator]['id'],chart.data.datasets[animationFindDatasetIndexIterator]['data']);
-
 							/* <set chart max for adjuster> */
 								adjuster_min=findMin(chart.data.datasets[animationFindDatasetIndexIterator]['data']);
 								adjuster_max=findMax(chart.data.datasets[animationFindDatasetIndexIterator]['data']);
@@ -1510,8 +1483,6 @@
 							chart.data.datasets[animationFindDatasetIndexIterator]['data']=[];*/
 						}
 						if(dataset.id==stock_selected) {
-							// console.log(chart.data.datasets[animationFindDatasetIndexIterator]['id'],chart.data.datasets[animationFindDatasetIndexIterator]['data']);
-
 							/* <set chart max for stock> */
 								stock_min=findMin(chart.data.datasets[animationFindDatasetIndexIterator]['data']);
 								stock_max=findMax(chart.data.datasets[animationFindDatasetIndexIterator]['data']);
@@ -1529,7 +1500,6 @@
 						}
 						
 						if(dataset.id==adjuster_selected+'_adj_'+stock_selected) {
-							// console.log(findMax(chart.data.datasets[animationFindDatasetIndexIterator]['data']),chart.data.datasets[animationFindDatasetIndexIterator]['id'],chart.data.datasets[animationFindDatasetIndexIterator]['data']);
 							/* <set chart max for adjusted> */
 								adjusted_min=findMin(chart.data.datasets[animationFindDatasetIndexIterator]['data']);
 								adjusted_max=findMax(chart.data.datasets[animationFindDatasetIndexIterator]['data']);
@@ -1541,23 +1511,19 @@
 
 
 						if(dataset.id==stock_selected+'_divided_by_'+adjuster_selected) {
-							// console.log(chart.data.datasets[animationFindDatasetIndexIterator]['id'],chart.data.datasets[animationFindDatasetIndexIterator]['data']);
 							/* <set chart max for adjusted> */
 								divided_by_min=findMin(chart.data.datasets[animationFindDatasetIndexIterator]['data']);
 								divided_by_max=findMax(chart.data.datasets[animationFindDatasetIndexIterator]['data']);
 							/* </set chart max for adjusted> */
-
-							// animationDataDividedByBuffer=chart.data.datasets[animationFindDatasetIndexIterator]['data'];
-							// chart.data.datasets[animationFindDatasetIndexIterator]['data']=[];
 						}
 					
 						animationFindDatasetIndexIterator++;;
 						
 					});
 				}
-			// </find currently visible dataset of stock and animate it>
+			/* </find currently visible dataset of stock and animate it> */
 
-			// <find currently visible dataset of divided_by data and animate it>
+			/* <find currently visible dataset of divided_by data and animate it> */
 				function animateDividedByLine() {
 					is_animating=true;
 
@@ -1579,7 +1545,7 @@
 
 					is_animating=false;
 				}
-			// </find currently visible dataset of adjusted data and animate it>
+			/* </find currently visible dataset of adjusted data and animate it> */
 
 			function animationStep() {
 
@@ -1607,25 +1573,21 @@
 					if(animationWhatAreWeAnimating=='stock' && !show_stock) {
 						/* if stock not visible, skip straight to draw the line instantly then go animate adjusted line, otherwise we'd have wait for a line to be drawn that we cannot see anyway (stock) */
 						window.requestAnimationFrame(animateDividedByLine);
-						// console.log('animateDividedByLine 1');
 					}
 					else if(animationDataBufferIterator<bufferToUse.length) {
 						/* continue animating because we're not done yet */
 						window.requestAnimationFrame(animationStep);
-						// console.log('animationStep 1');
 					}
 					else {
 						/* if we finished, see if we are animating the stock line, so we can animate the adjusted line next */
 						if(animationWhatAreWeAnimating=='stock') {
 							window.requestAnimationFrame(animateDividedByLine);
-							// console.log('animateDividedByLine 2');
 						}
 					}
 				/* </quit if data finished> */
 				
 			}
 			function findMin(array) {
-				// console.log(array);
 				var min=Infinity;
 				for (var i = 0; i < array.length; i++) {
 					var value=parseFloat(array[i]);
@@ -1633,11 +1595,9 @@
 						min=value;
 					}
 				}
-				// console.log(min);
 				return min;
 			}
 			function findMax(array) {
-				// console.log(array);
 				var max=0;
 				for (var i = 0; i < array.length; i++) {
 					var value=parseFloat(array[i]);
@@ -1651,7 +1611,6 @@
 
 
 		function updateVisibility() {
-			// console.log('updateVisibility');
 
 			if(logarithmic) {
 				chart.options.scales.yAxes[0].type='logarithmic'
@@ -1728,7 +1687,7 @@
 				chart.options.scales.yAxes[3].display=false;
 			}
 
-			// <set min & max>
+			/* <set min & max> */
 				if(show_adjusted && show_stock && stock_max<adjusted_max) {
 					var stock_or_adjusted_max=adjusted_max;
 				}
@@ -1758,7 +1717,7 @@
 				chart.options.scales.yAxes[1].ticks.min=adjuster_min;
 				chart.options.scales.yAxes[2].ticks.min=divided_by_min;
 				chart.options.scales.yAxes[3].ticks.min=stock_or_adjusted_min; /* adj by shd follow same as stock min/max to align */
-			// </set min & max>
+			/* </set min & max> */
 
 			var iterator=0;
 			chart.data.datasets.forEach(function(dataset) {
@@ -1797,8 +1756,6 @@
 			chart.update();
 		}
 		function updateUrl() {
-			// console.log('updateUrl');
-			// uri='/?m='+adjuster_selected+'&stock='+stock_selected+'&time='+time_selected+'&show_stock='+show_stock+'&show_adjusted='+show_adjusted+'&show_adjuster='+show_adjuster+'&logarithmic='+logarithmic;
 			var params='';
 			/* make sure all these are set to the default, so that if they differ from the default we add the ?params only */
 			if(time_selected!='<?=$time_selected_default?>') {
@@ -1823,11 +1780,11 @@
 			if(params) {
 				params='/?'+params;
 			}
-			// <cpi-in-btc -> bitcoin-price-index>
+			/* <cpi-in-btc -> bitcoin-price-index> */
 				if(stock_selected+'-in-'+adjuster_selected=='cpi-in-btc') {
 					uri='/bitcoin-price-index'+params;
 				}
-			// </cpi-in-btc -> bitcoin-price-index>
+			/* </cpi-in-btc -> bitcoin-price-index> */
 			else {
 				uri='/'+stock_selected+'-in-'+adjuster_selected+params;
 			}
@@ -1845,7 +1802,6 @@
 		}
 
 		function updateSelected() {
-			// console.log('updateSelected');
 			adjuster_selected=$('select.adjuster_selector').children("option:selected").val();
 			adjuster_selected_label=$('select.adjuster_selector').children("option:selected").text();
 			adjuster_selected_suffix=$('select.adjuster_selector').children("option:selected").data('suffix');
@@ -1897,7 +1853,6 @@
 			return t;
 		}
 		function updateChart() {
-			// console.log('updateChart');
 			updateSelected();
 			
 			document.title=stock_selected_label+' Price in '+adjuster_selected_label;
@@ -1916,7 +1871,6 @@
 				if(dataset.id==stock_selected) {
 					/* make original stock low opacity, but show */
 					dataset.hidden=false;
-					// dataset.borderColor='rgba(43,222,115,1)';
 					notTheStockOrTheAdjustedStock=false;
 				}
 
@@ -1930,17 +1884,16 @@
 				if(dataset.id==adjuster_selected+'_adj_'+stock_selected) {
 					/* make adjusted stock high opacity, and show */
 					dataset.hidden=false;
-					// dataset.borderColor='#ffc924';
 					notTheStockOrTheAdjustedStock=false;
 				}
 
-				// <new, show adjusted nominal values too as blue line>
+				/* <new, show adjusted nominal values too as blue line> */
 					if(dataset.id==adjuster_selected+'_adjuster') {
 						dataset.hidden=false;
 						// dataset.borderColor='rgba(66, 165, 255)';
 						notTheStockOrTheAdjustedStock=false;
 					}
-				// </new, show adjusted nominal values too as blue line>
+				/* </new, show adjusted nominal values too as blue line> */
 
 				
 				if(notTheStockOrTheAdjustedStock) {
@@ -1994,420 +1947,389 @@
 							}
 							echo '"'.date('Y-m',$row['epoch']).'"';
 							/*?>new Date(<?=$row['epoch']?>*1000)<?*/
-							// echo $row['epoch'];
 							echo ',';
 						}
 					?>],
 					datasets: [
-						
-						<?
-						// foreach($stocks as $stock) {?>
-							{
-								<?if($_GET['layout']=='screenshot'){?>
-									borderWidth:4,
-								<?} else {?>
-									borderWidth:2,
-								<?}?>
-								hidden:true,
-					 	 		id:'<?=$stock_selected?>',
-								label: '<?=$stocks[$stock_selected]?>',
-								borderColor: '#2bde73',
-								backgroundColor: gradientGreen,
-								yAxisID:'stock',
-								fill: true,
-								data: 
-								[
-									<?
-										unset($previousValue);
-										foreach($data as $row) {
-											if(empty($row['epoch'])) {
-												continue;
-											}
-											if(!$row[$stock_selected]) {
-												if(!empty($previousValue) && $doubleEmptyValueLimiter<2) { 
-													/* if missing data show previous value to fill in, because =GOOGLEFINANCE sometimes randomly misses single dates */
-													echo $previousValue;
-													$doubleEmptyValueLimiter++;
-												}
-												echo ',';
-												continue;
-											}
-											echo $row[$stock_selected];
-											echo ',';
-											$previousValue=$row[$stock_selected];
-											unset($doubleEmptyValueLimiter);
+						{
+							<?if($_GET['layout']=='screenshot'){?>
+								borderWidth:4,
+							<?} else {?>
+								borderWidth:2,
+							<?}?>
+							hidden:true,
+				 	 		id:'<?=$stock_selected?>',
+							label: '<?=$stocks[$stock_selected]?>',
+							borderColor: '#2bde73',
+							backgroundColor: gradientGreen,
+							yAxisID:'stock',
+							fill: true,
+							data: 
+							[
+								<?
+									unset($previousValue);
+									foreach($data as $row) {
+										if(empty($row['epoch'])) {
+											continue;
 										}
-									?>
-								],
-							},<?
-						//}?>
-
-						
-						<?
-						// foreach($adjusters as $adjuster) {?>
-							{
-								<?if($_GET['layout']=='screenshot'){?>
-									borderWidth:4,
-								<?} else {?>
-									borderWidth:2,
-								<?}?>
-								hidden:true,
-					 	 		id:'<?=$adjuster_selected?>_adjuster',
-								label: '<?=$adjusters[$adjuster_selected]?>',
-								borderColor: '#42a5ff',
-								backgroundColor: gradientBlue,
-								yAxisID:'adjuster',
-								fill: true,
-								data: 
-								[
-									<?
-										unset($previousValue);
-										foreach($data as $row) {
-											if(!$row[$adjuster_selected]) {
-												if(!empty($previousValue) && $doubleEmptyValueLimiter<2) { 
-													/* if missing data show previous value to fill in, because =GOOGLEFINANCE sometimes randomly misses single dates */
-													echo $previousValue;
-													$doubleEmptyValueLimiter++;
-												}
-												echo ',';
-												continue;
+										if(!$row[$stock_selected]) {
+											if(!empty($previousValue) && $doubleEmptyValueLimiter<2) { 
+												/* if missing data show previous value to fill in, because =GOOGLEFINANCE sometimes randomly misses single dates */
+												echo $previousValue;
+												$doubleEmptyValueLimiter++;
 											}
-											echo $row[$adjuster_selected];
 											echo ',';
-											$previousValue=$row[$adjuster_selected];
-											unset($doubleEmptyValueLimiter);
+											continue;
 										}
-									?>
-								],
-							},<?
-						//}?>
-						
-
-
-						<?/*foreach($adjusters as $adjuster) {
-							foreach($stocks as $stock) {*/?>
-								{
-									<?if($_GET['layout']=='screenshot'){?>
-										borderWidth:4,
-									<?} else {?>
-										borderWidth:2,
-									<?}?>
-									hidden:true,
-						 	 		id:'<?=$stock_selected?>_divided_by_<?=$adjuster_selected?>',
-									yAxisID:'divided_by',
-									borderColor: '#ff4742',
-									backgroundColor: gradientRed,
-									fill: true,
-									data: 
-									[
-										<?
-											unset($previousValue);
-											$doubleEmptyValueLimiter=0;
-											foreach($data as $row) {
-												if(empty($row['epoch'])) {
-													continue;
-												}
-												if(!$row[$stock_selected.'_divided_by_'.$adjuster_selected]) {
-													if(!empty($previousValue) && $doubleEmptyValueLimiter<2) {
-														/* if missing data show previous value to fill in, because =GOOGLEFINANCE sometimes randomly misses single dates */
-														echo $previousValue;
-														$doubleEmptyValueLimiter++;
-													}
-													echo ',';
-													continue;
-												}
-												echo $row[$stock_selected.'_divided_by_'.$adjuster_selected];
-												echo ',';
-												$previousValue=$row[$stock_selected.'_divided_by_'.$adjuster_selected];
-												unset($doubleEmptyValueLimiter);
+										echo $row[$stock_selected];
+										echo ',';
+										$previousValue=$row[$stock_selected];
+										unset($doubleEmptyValueLimiter);
+									}
+								?>
+							],
+						},
+						{
+							<?if($_GET['layout']=='screenshot'){?>
+								borderWidth:4,
+							<?} else {?>
+								borderWidth:2,
+							<?}?>
+							hidden:true,
+				 	 		id:'<?=$adjuster_selected?>_adjuster',
+							label: '<?=$adjusters[$adjuster_selected]?>',
+							borderColor: '#42a5ff',
+							backgroundColor: gradientBlue,
+							yAxisID:'adjuster',
+							fill: true,
+							data: 
+							[
+								<?
+									unset($previousValue);
+									foreach($data as $row) {
+										if(!$row[$adjuster_selected]) {
+											if(!empty($previousValue) && $doubleEmptyValueLimiter<2) { 
+												/* if missing data show previous value to fill in, because =GOOGLEFINANCE sometimes randomly misses single dates */
+												echo $previousValue;
+												$doubleEmptyValueLimiter++;
 											}
-										?>
-									],
-								},<?
-							 	//}
-						//}?>
-
-						<?/*foreach($adjusters as $adjuster) {
-							foreach($stocks as $stock) {*/?>
-								{
-									<?if($_GET['layout']=='screenshot'){?>
-										borderWidth:4,
-									<?} else {?>
-										borderWidth:2,
-									<?}?>
-									hidden:true,
-						 	 		id:'<?=$adjuster_selected?>_adj_<?=$stock_selected?>',
-									yAxisID:'adjusted',
-									borderColor: '#ffc924',
-									backgroundColor: gradientYellow,
-									fill: true,
-									data: 
-									[
-										<?
-											unset($previousValue);
-											$doubleEmptyValueLimiter=0;
-											foreach($data as $row) {
-												if(empty($row['epoch'])) {
-													continue;
-												}
-												if(!$row[$adjuster_selected.'_adj_'.$stock_selected]) {
-													if(!empty($previousValue) && $doubleEmptyValueLimiter<2) {
-														/* if missing data show previous value to fill in, because =GOOGLEFINANCE sometimes randomly misses single dates */
-														echo $previousValue;
-														$doubleEmptyValueLimiter++;
-													}
-													echo ',';
-													continue;
-												}
-												echo $row[$adjuster_selected.'_adj_'.$stock_selected];
-												echo ',';
-												$previousValue=$row[$adjuster_selected.'_adj_'.$stock_selected];
-												unset($doubleEmptyValueLimiter);
+											echo ',';
+											continue;
+										}
+										echo $row[$adjuster_selected];
+										echo ',';
+										$previousValue=$row[$adjuster_selected];
+										unset($doubleEmptyValueLimiter);
+									}
+								?>
+							],
+						},
+						{
+							<?if($_GET['layout']=='screenshot'){?>
+								borderWidth:4,
+							<?} else {?>
+								borderWidth:2,
+							<?}?>
+							hidden:true,
+				 	 		id:'<?=$stock_selected?>_divided_by_<?=$adjuster_selected?>',
+							yAxisID:'divided_by',
+							borderColor: '#ff4742',
+							backgroundColor: gradientRed,
+							fill: true,
+							data: 
+							[
+								<?
+									unset($previousValue);
+									$doubleEmptyValueLimiter=0;
+									foreach($data as $row) {
+										if(empty($row['epoch'])) {
+											continue;
+										}
+										if(!$row[$stock_selected.'_divided_by_'.$adjuster_selected]) {
+											if(!empty($previousValue) && $doubleEmptyValueLimiter<2) {
+												/* if missing data show previous value to fill in, because =GOOGLEFINANCE sometimes randomly misses single dates */
+												echo $previousValue;
+												$doubleEmptyValueLimiter++;
 											}
-										?>
-									],
-								},<?
-							 	//}
-						//}?>
-
-
-
-
-
+											echo ',';
+											continue;
+										}
+										echo $row[$stock_selected.'_divided_by_'.$adjuster_selected];
+										echo ',';
+										$previousValue=$row[$stock_selected.'_divided_by_'.$adjuster_selected];
+										unset($doubleEmptyValueLimiter);
+									}
+								?>
+							],
+						},
+						{
+							<?if($_GET['layout']=='screenshot'){?>
+								borderWidth:4,
+							<?} else {?>
+								borderWidth:2,
+							<?}?>
+							hidden:true,
+				 	 		id:'<?=$adjuster_selected?>_adj_<?=$stock_selected?>',
+							yAxisID:'adjusted',
+							borderColor: '#ffc924',
+							backgroundColor: gradientYellow,
+							fill: true,
+							data: 
+							[
+								<?
+									unset($previousValue);
+									$doubleEmptyValueLimiter=0;
+									foreach($data as $row) {
+										if(empty($row['epoch'])) {
+											continue;
+										}
+										if(!$row[$adjuster_selected.'_adj_'.$stock_selected]) {
+											if(!empty($previousValue) && $doubleEmptyValueLimiter<2) {
+												/* if missing data show previous value to fill in, because =GOOGLEFINANCE sometimes randomly misses single dates */
+												echo $previousValue;
+												$doubleEmptyValueLimiter++;
+											}
+											echo ',';
+											continue;
+										}
+										echo $row[$adjuster_selected.'_adj_'.$stock_selected];
+										echo ',';
+										$previousValue=$row[$adjuster_selected.'_adj_'.$stock_selected];
+										unset($doubleEmptyValueLimiter);
+									}
+								?>
+							],
+						},
 					]
 			},
-			
-				options: {
-					elements:{point:{radius:0},line: {
-						tension:0.1
-					}},
-					animation: false,
-					responsive:true,
-					maintainAspectRatio:false,
-					legend: {
-						display: false
-					},
-					tooltips: {
-						mode:'x-axis',
-						intersect:false,
-						callbacks: {
-							labelColor: function(tooltipItem, chart) {
-								var id=chart.config.data.datasets[tooltipItem.datasetIndex].id;
-								if(id==adjuster_selected+'_adj_'+stock_selected) {
-									return {
-										borderColor:'#ffc924',
-										backgroundColor:'#ffc924',
-									};
-								}
-								else if(id==stock_selected+'_divided_by_'+adjuster_selected) {
-									return {
-										borderColor:'#ff4742',
-										backgroundColor:'#ff4742',
-									};
-								}
-								else if(id==stock_selected) {
-									return {
-										borderColor:'#2bde73',
-										backgroundColor:'#2bde73',
-									};
-								}
-								else if(id==adjuster_selected+'_adjuster') {
-									return {
-										borderColor:'#42a5ff',
-										backgroundColor:'#42a5ff',
-									};
-								}
-								else {
-									return {
-										borderColor:'#000',
-										backgroundColor:'#000',
-									};
-								}
-				            },
-							label: function(tooltipItem, data) {
-								var label = data.datasets[tooltipItem.datasetIndex].label || '';
+		
+			options: {
+				elements:{point:{radius:0},line: {
+					tension:0.1
+				}},
+				animation: false,
+				responsive:true,
+				maintainAspectRatio:false,
+				legend: {
+					display: false
+				},
+				tooltips: {
+					mode:'x-axis',
+					intersect:false,
+					callbacks: {
+						labelColor: function(tooltipItem, chart) {
+							var id=chart.config.data.datasets[tooltipItem.datasetIndex].id;
+							if(id==adjuster_selected+'_adj_'+stock_selected) {
+								return {
+									borderColor:'#ffc924',
+									backgroundColor:'#ffc924',
+								};
+							}
+							else if(id==stock_selected+'_divided_by_'+adjuster_selected) {
+								return {
+									borderColor:'#ff4742',
+									backgroundColor:'#ff4742',
+								};
+							}
+							else if(id==stock_selected) {
+								return {
+									borderColor:'#2bde73',
+									backgroundColor:'#2bde73',
+								};
+							}
+							else if(id==adjuster_selected+'_adjuster') {
+								return {
+									borderColor:'#42a5ff',
+									backgroundColor:'#42a5ff',
+								};
+							}
+							else {
+								return {
+									borderColor:'#000',
+									backgroundColor:'#000',
+								};
+							}
+			            },
+						label: function(tooltipItem, data) {
+							var label = data.datasets[tooltipItem.datasetIndex].label || '';
 
-								t=decimalify(tooltipItem.yLabel);
+							t=decimalify(tooltipItem.yLabel);
 
-								if(label.indexOf('in ')>-1) {
-									label = t+' '+stock_selected_label+' / '+adjuster_selected_label;
-								}
-								else if(label.toUpperCase()==stock_selected.toUpperCase()) {
-									label = '$'+t+' '+stock_selected_label;
-								}
-								else if(label.toUpperCase()==adjuster_selected.toUpperCase()) {
-									label = '$'+t+' '+adjuster_selected_label;
-								}
-								else {
-									label = '$'+t+' '+label;
-								}
-								return label;
+							if(label.indexOf('in ')>-1) {
+								label = t+' '+stock_selected_label+' / '+adjuster_selected_label;
+							}
+							else if(label.toUpperCase()==stock_selected.toUpperCase()) {
+								label = '$'+t+' '+stock_selected_label;
+							}
+							else if(label.toUpperCase()==adjuster_selected.toUpperCase()) {
+								label = '$'+t+' '+adjuster_selected_label;
+							}
+							else {
+								label = '$'+t+' '+label;
+							}
+							return label;
+						}
+					}
+				},
+				scales: {
+					xAxes: [{
+						type: 'time',
+						time: {
+							format:'YYYY-MM',
+							tooltipFormat:'YYYY-MM'
+						},
+						position: "bottom",
+						gridLines:{
+							tickMarkLength: 1,
+							color: '#252525',
+							zeroLineColor: '#252525'
+						},
+						ticks: {
+							autoSkip:true, 
+							maxTicksLimit:30,
+							padding:14,
+							fontFamily:'Iosevka Web, monospace',
+							fontColor:'rgb(186,186,186)',
+							labelOffset: 18,
+							callback: function(t) {
+								return t;
 							}
 						}
-					},
-					scales: {
-						xAxes: [{
-							type: 'time',
-							time: {
-								format:'YYYY-MM',
-								tooltipFormat:'YYYY-MM'
-							},
-							position: "bottom",
+					}],
+					yAxes: [
+						{
+							id:'stock',
+							<?if($logarithmic){?>
+								type: 'logarithmic',
+							<?} else {?>
+								type: 'linear',
+							<?}?>
+							display:false,
+							stacked:false,
+							position:'left',
 							gridLines:{
 								tickMarkLength: 1,
 								color: '#252525',
 								zeroLineColor: '#252525'
 							},
 							ticks: {
-								autoSkip:true, 
-								maxTicksLimit:30,
+								maxRotation: 0,
+								autoSkip:true,
+								maxTicksLimit:12,
+								beginAtZero: false, 
+								/*min: 0,*/
+								max:1,
 								padding:14,
 								fontFamily:'Iosevka Web, monospace',
-								fontColor:'rgb(186,186,186)',
-								labelOffset: 18,
+								fontColor:'#2bde73',
+								fontSize: 12,
 								callback: function(t) {
-									return t;
+									if(stock_selected_suffix) {
+										return decimalify(t)+stock_selected_suffix;
+									}
+									return '$'+decimalify(t);
 								}
 							}
-						}],
-						yAxes: [
-							{
-								id:'stock',
-								<?if($logarithmic){?>
-									type: 'logarithmic',
-								<?} else {?>
-									type: 'linear',
-								<?}?>
-								display:false,
-								stacked:false,
-								position:'left',
-								gridLines:{
-									tickMarkLength: 1,
-									color: '#252525',
-									zeroLineColor: '#252525'
-								},
-								ticks: {
-									maxRotation: 0,
-									autoSkip:true,
-									maxTicksLimit:12,
-									beginAtZero: false, 
-									/*min: 0,*/
-									max:1,
-									padding:14,
-									fontFamily:'Iosevka Web, monospace',
-									// fontColor:'rgb(186,186,186)',
-									fontColor:'#2bde73',
-									fontSize: 12,
-									callback: function(t) {
-										if(stock_selected_suffix) {
-											return decimalify(t)+stock_selected_suffix;
-										}
-										return '$'+decimalify(t);
-									}
-								}
+						},
+						{
+							<?if($logarithmic){?>
+								type: 'logarithmic',
+							<?} else {?>
+								type: 'linear',
+							<?}?>
+							display:false,
+							id: 'adjuster',
+							stacked:false,
+							position:'right',
+							gridLines:{
+								tickMarkLength: 1,
+								color: '#252525',
+								zeroLineColor: '#252525'
 							},
-							{
-								<?if($logarithmic){?>
-									type: 'logarithmic',
-								<?} else {?>
-									type: 'linear',
-								<?}?>
-								display:false,
-								id: 'adjuster',
-								stacked:false,
-								position:'right',
-								gridLines:{
-									tickMarkLength: 1,
-									color: '#252525',
-									zeroLineColor: '#252525'
-								},
-								ticks: {
-									maxRotation: 0,
-									autoSkip:true,
-									maxTicksLimit:12,
-									beginAtZero: false,
-									// min: 0, 
-									max:1,
-									padding:14,
-									fontFamily:'Iosevka Web, monospace',
-									fontColor:'#42a5ff',
-									fontSize: 12,
-									callback: function(t) {
-										if(adjuster_selected_suffix) {
-											return decimalify(t)+adjuster_selected_suffix;
-										}
-										return '$'+decimalify(t);
+							ticks: {
+								maxRotation: 0,
+								autoSkip:true,
+								maxTicksLimit:12,
+								beginAtZero: false,
+								max:1,
+								padding:14,
+								fontFamily:'Iosevka Web, monospace',
+								fontColor:'#42a5ff',
+								fontSize: 12,
+								callback: function(t) {
+									if(adjuster_selected_suffix) {
+										return decimalify(t)+adjuster_selected_suffix;
 									}
-								}
-							},
-							{
-								<?if($logarithmic){?>
-									type: 'logarithmic',
-								<?} else {?>
-									type: 'linear',
-								<?}?>
-								display:false,
-								id: 'divided_by',
-								stacked:false,
-								position:'right',
-								gridLines:{
-									tickMarkLength: 1,
-									color: '#252525',
-									zeroLineColor: '#252525'
-								},
-								ticks: {
-									maxRotation: 0,
-									autoSkip:true,
-									maxTicksLimit:12,
-									beginAtZero: false,
-									// min: 0, 
-									max:1,
-									padding:14,
-									fontFamily:'Iosevka Web, monospace',
-									fontColor:'#ff4742',
-									fontSize: 12,
-									callback: function(t) {
-										return decimalify(t);
-									}
-								}
-							},
-							{
-								<?if($logarithmic){?>
-									type: 'logarithmic',
-								<?} else {?>
-									type: 'linear',
-								<?}?>
-								display:false,
-								id:'adjusted',
-								stacked:false,
-								position:'right',
-								gridLines:{
-									tickMarkLength: 1,
-									color: '#252525',
-									zeroLineColor: '#252525'
-								},
-								ticks: {
-									maxRotation: 0,
-									autoSkip:true,
-									maxTicksLimit:12,
-									beginAtZero: false,
-									// min: 0, 
-									max:1,
-									padding:14,
-									fontFamily:'Iosevka Web, monospace',
-									fontColor:'#ffc924',
-									fontSize: 12,
-									callback: function(t) {
-										if(adjuster_selected_suffix) {
-											return decimalify(t)+adjuster_selected_suffix;
-										}
-										return '$'+decimalify(t)+adjuster_selected_suffix;
-									}
+									return '$'+decimalify(t);
 								}
 							}
-						]
-					}
+						},
+						{
+							<?if($logarithmic){?>
+								type: 'logarithmic',
+							<?} else {?>
+								type: 'linear',
+							<?}?>
+							display:false,
+							id: 'divided_by',
+							stacked:false,
+							position:'right',
+							gridLines:{
+								tickMarkLength: 1,
+								color: '#252525',
+								zeroLineColor: '#252525'
+							},
+							ticks: {
+								maxRotation: 0,
+								autoSkip:true,
+								maxTicksLimit:12,
+								beginAtZero: false,
+								max:1,
+								padding:14,
+								fontFamily:'Iosevka Web, monospace',
+								fontColor:'#ff4742',
+								fontSize: 12,
+								callback: function(t) {
+									return decimalify(t);
+								}
+							}
+						},
+						{
+							<?if($logarithmic){?>
+								type: 'logarithmic',
+							<?} else {?>
+								type: 'linear',
+							<?}?>
+							display:false,
+							id:'adjusted',
+							stacked:false,
+							position:'right',
+							gridLines:{
+								tickMarkLength: 1,
+								color: '#252525',
+								zeroLineColor: '#252525'
+							},
+							ticks: {
+								maxRotation: 0,
+								autoSkip:true,
+								maxTicksLimit:12,
+								beginAtZero: false,
+								max:1,
+								padding:14,
+								fontFamily:'Iosevka Web, monospace',
+								fontColor:'#ffc924',
+								fontSize: 12,
+								callback: function(t) {
+									if(adjuster_selected_suffix) {
+										return decimalify(t)+adjuster_selected_suffix;
+									}
+									return '$'+decimalify(t)+adjuster_selected_suffix;
+								}
+							}
+						}
+					]
 				}
+			}
 		});
 		</script>
 
@@ -2666,9 +2588,9 @@
 
 function sanitizeOutput($buffer) {
 	$search = array(
-		'/\>[\S ]+/s',	// strip whitespaces after tags, except space
-		'/[\S ]+\</s',	// strip whitespaces before tags, except space
-		'/(\s)+/s'		 // shorten multiple whitespace sequences
+		'/\>[\S ]+/s',	
+		'/[\S ]+\</s',	
+		'/(\s)+/s'		
 	);
 	$replace = array(
 		'>',
