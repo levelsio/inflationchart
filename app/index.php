@@ -149,7 +149,7 @@
 			/* make sure you check if $adjuster_selected and $stock selected are safe from $_GET[] user input above */
 			$query=$db->prepare("SELECT epoch,".$adjuster_selected.",".$stock_selected." FROM inflationchart WHERE epoch>:epoch ORDER BY epoch ASC");
 			if($_GET['time']=='all') {
-				$query->bindValue(':epoch',0);
+				$query->bindValue(':epoch',strtotime("1900-01-01"));
 			}
 			else if($_GET['time']!=$time_selected_default && !empty($_GET['time'])) {
 				$query->bindValue(':epoch',strtotime('-'.$_GET['time']));
@@ -172,7 +172,7 @@
 		// so we can change the X axis to start at the first point of data
 		// e.g. BTC starts in 2009 not 2000
 
-		$newestStartTime=0;
+		$newestStartTime=strtotime("1900-01-01");
 		foreach($data as $row) {
 			if(!empty($row[$stock_selected]) && ($row['epoch']<$dataStartTimes[$stock_selected] || empty($dataStartTimes[$stock_selected]))) {
 				$dataStartTimes[$stock_selected]=$row['epoch'];
