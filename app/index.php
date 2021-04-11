@@ -68,7 +68,7 @@
 
 
 	// <config>
-		$time_selected_default='20 years';
+		$time_selected_default='all';
 
 		$stocks=array(
 			'spx'=>'🇺🇸 S&P500',
