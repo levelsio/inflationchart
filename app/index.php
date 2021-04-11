@@ -756,7 +756,7 @@
 
 	.legend {
 		color:rgb(211,211,211);
-		left:70px;
+		left:100px;
 		top:155px;
 		/*background:linear-gradient(180deg,#0a1325 0,#0a1325);*/
 		/*background:#0a1325;*/
