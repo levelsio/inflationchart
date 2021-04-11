@@ -76,7 +76,7 @@
 			'nasdaq'=>'🤖 NASDAQ',
 			'gdp'=>'💰 US GDP',
 			'income'=>'💰 US Income',
-			'min_wage'=>'💰 US Min Wage',
+			'minwage'=>'💰 US Min Wage',
 			'home'=>'🏡 US Home Price',
 			'cpi'=>'🛒 CPI',
 			'oil'=>'🛢 Oil',
