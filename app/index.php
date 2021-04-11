@@ -1001,7 +1001,7 @@
 
 			<div class="time_selector_wrapper">
 				<div class="heading_above">
-					In the last
+					In last
 				</div>
 				<select class="time_selector">
 					<option value="1 year" <?if($time_selected_default=='1 year'){?>selected<?}?> <?if($_GET['time']=='1 year'){?>selected<?}?>>🗓 1 year</option>
