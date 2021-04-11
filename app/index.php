@@ -156,7 +156,12 @@
 			}
 			else {
 				// default
-				$query->bindValue(':epoch',strtotime("-".$time_selected_default));
+				if($time_selected_default=='all') {
+					$query->bindValue(':epoch',strtotime("1900-01-01"));
+				}
+				else {
+					$query->bindValue(':epoch',strtotime("-".$time_selected_default));
+				}
 			}
 			$query->execute();
 			$data=$query->fetchAll(PDO::FETCH_ASSOC);
