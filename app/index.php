@@ -114,7 +114,8 @@
 			'bigmac'=>'🍔 Big Mac Index',
 			'btc'=>'🥇 BTC',
 			'eth'=>'🏅 ETH',
-			'income'=>'💰 US Income'
+			'income'=>'💰 US Income',
+			'minwage'=>'💰 US Min Wage',
 		);
 
 		$info=array(
