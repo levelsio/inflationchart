@@ -2161,16 +2161,8 @@
 
 							t=decimalify(tooltipItem.yLabel);
 
-							console.log(label);
-
-							if(label.indexOf('in ')>-1) {
-								label = t+' '+stock_selected_label+' / '+adjuster_selected_label;
-							}
-							else if(label.toUpperCase()==stock_selected.toUpperCase()) {
-								label = '$'+t+' '+stock_selected_label;
-							}
-							else if(label.toUpperCase()==adjuster_selected.toUpperCase()) {
-								label = '$'+t+' '+adjuster_selected_label;
+							if(label.indexOf(' / ')>-1) {
+								label = t+' '+label;
 							}
 							else {
 								label = '$'+t+' '+label;
