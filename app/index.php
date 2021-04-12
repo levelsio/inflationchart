@@ -2036,6 +2036,7 @@
 							<?}?>
 							hidden:true,
 				 	 		id:'<?=$stock_selected?>_divided_by_<?=$adjuster_selected?>',
+							label: '<?=$stocks[$stock_selected]?> / <?=$adjusters[$adjuster_selected]?>',
 							yAxisID:'divided_by',
 							borderColor: '#ff4742',
 							backgroundColor: gradientRed,
@@ -2074,6 +2075,7 @@
 							<?}?>
 							hidden:true,
 				 	 		id:'<?=$adjuster_selected?>_adj_<?=$stock_selected?>',
+							label: '<?=$adjusters[$adjuster_selected]?>-adj <?=$stocks[$stock_selected]?>',
 							yAxisID:'adjusted',
 							borderColor: '#ffc924',
 							backgroundColor: gradientYellow,
@@ -2158,6 +2160,8 @@
 							var label = data.datasets[tooltipItem.datasetIndex].label || '';
 
 							t=decimalify(tooltipItem.yLabel);
+
+							console.log(label);
 
 							if(label.indexOf('in ')>-1) {
 								label = t+' '+stock_selected_label+' / '+adjuster_selected_label;
