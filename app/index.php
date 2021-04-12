@@ -171,18 +171,35 @@
 
 	// <data start/end times>
 		$startTimeWithCompleteData=strtotime("2100-01-01");
+		$endTimeWithCompleteData=strtotime("1900-01-01");
 		foreach($data as $row) {
 			if(
 				!empty($row[$stock_selected]) && 
 				!empty($row[$adjuster_selected]) && 
-				$row['epoch']<$startTimeWithCompleteData) {
-				echo json_encode($row);exit;
+				$row['epoch']<$startTimeWithCompleteData
+			) {
 				$startTimeWithCompleteData=$row['epoch'];
 			}
+
+			if(
+				!empty($row[$stock_selected]) && 
+				!empty($row[$adjuster_selected]) && 
+				$row['epoch']>$endTimeWithCompleteData
+			) {
+				$endTimeWithCompleteData=$row['epoch'];
+			}
 		}
-		echo date('c',$startTimeWithCompleteData);exit;
 
 
+		// <remove data outside bounds>
+			$newData=array();
+			foreach($data as $row) {
+				if($row['epoch']>$endTimeWithCompleteData) continue;
+				if($row['epoch']<$startTimeWithCompleteData) continue;
+				array_push($newData,$row);
+			}
+			$data=$newData;
+		// </remove data outside bounds>
 
 
 		// <get first for each data set but us startTime>
