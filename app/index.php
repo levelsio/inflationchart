@@ -170,85 +170,18 @@
 
 
 	// <data start/end times>
-		// also used for sitemap
-		$dataStartTimes=array();
-
-		// find the first timestamp of a non-empty value of each data set
-		// so we can change the X axis to start at the first point of data
-		// e.g. BTC starts in 2009 not 2000
-
-		$newestStartTime=strtotime("1900-01-01");
+		$startTimeWithCompleteData=strtotime("2100-01-01");
 		foreach($data as $row) {
-			if(!empty($row[$stock_selected]) && ($row['epoch']<$dataStartTimes[$stock_selected] || empty($dataStartTimes[$stock_selected]))) {
-				$dataStartTimes[$stock_selected]=$row['epoch'];
-				if($row['epoch']>$newestStartTime) {
-					$newestStartTime=$row['epoch'];
-				}
-			}
-			if(!empty($row[$adjuster_selected]) && ($row['epoch']<$dataStartTimes[$adjuster] || empty($dataStartTimes[$adjuster_selected]))) {
-				$dataStartTimes[$adjuster_selected]=$row['epoch'];
-				if($row['epoch']>$newestStartTime) {
-					$newestStartTime=$row['epoch'];
-				}
-			}
-			if(!empty($row[$stock_selected]) && !empty($row[$adjuster_selected]) && ($row['epoch']<$dataStartTimes[$adjuster_selected.'_adj_'.$stock_selected] || empty($dataStartTimes[$adjuster_selected.'_adj_'.$stock_selected]))) {
-				$dataStartTimes[$adjuster_selected.'_adj_'.$stock_selected]=$row['epoch'];
-				if($row['epoch']>$newestStartTime) {
-					$newestStartTime=$row['epoch'];
-				}
-			}
-			if(!empty($row[$stock_selected]) && !empty($row[$adjuster_selected]) && ($row['epoch']<$dataStartTimes[$stock_selected.'_divided_by_'.$adjuster_selected] || empty($dataStartTimes[$stock_selected.'_divided_by_'.$adjuster_selected]))) {
-				$dataStartTimes[$stock_selected.'_divided_by_'.$adjuster_selected]=$row['epoch'];
-				if($row['epoch']>$newestStartTime) {
-					$newestStartTime=$row['epoch'];
-				}
+			if(
+				!empty($row[$stock_selected]) && 
+				!empty($row[$adjuster_selected]) && 
+				$row['epoch']<$startTimeWithCompleteData) {
+				echo json_encode($row);exit;
+				$startTimeWithCompleteData=$row['epoch'];
 			}
 		}
+		echo date('c',$startTimeWithCompleteData);exit;
 
-		$dataEndTimes=array();
-
-
-		// find the last timestamp of a non-empty value of each data set
-		// so we can change the X axis to end at the last point of data
-		
-		$oldestEndTime=0;
-		foreach($data as $row) {
-			if(!empty($row[$stock_selected]) && ($row['epoch']>$dataStartTimes[$stock_selected] || empty($dataEndTimes[$stock_selected]))) {
-				$dataEndTimes[$stock_selected]=$row['epoch'];
-				if($row['epoch']>$oldestEndTime) {
-					$oldestEndTime=$row['epoch'];
-				}
-			}
-			if(!empty($row[$adjuster_selected]) && ($row['epoch']>$dataStartTimes[$adjuster_selected] || empty($dataEndTimes[$adjuster_selected]))) {
-				$dataEndTimes[$adjuster_selected]=$row['epoch'];
-				if($row['epoch']<$oldestEndTime) {
-					$oldestEndTime=$row['epoch'];
-				}
-			}
-			if(!empty($row[$stock_selected]) && !empty($row[$adjuster_selected]) && ($row['epoch']>$dataEndTimes[$adjuster_selected.'_adj_'.$stock_selected] || empty($dataStartTimes[$adjuster_selected.'_adj_'.$stock_selected]))) {
-				$dataEndTimes[$adjuster_selected.'_adj_'.$stock_selected]=$row['epoch'];
-				if($row['epoch']<$oldestEndTime) {
-					$oldestEndTime=$row['epoch'];
-				}
-			}
-			if(!empty($row[$stock_selected]) && !empty($row[$adjuster_selected]) && ($row['epoch']>$dataEndTimes[$stock_selected.'_divided_by_'.$adjuster_selected] || empty($dataStartTimes[$stock_selected.'_divided_by_'.$adjuster_selected]))) {
-				$dataEndTimes[$stock_selected.'_divided_by_'.$adjuster_selected]=$row['epoch'];
-				if($row['epoch']<$oldestEndTime) {
-					$oldestEndTime=$row['epoch'];
-				}
-			}
-		}
-
-
-		// find newest start time $newestStartTime above and remove older data than that so we don't have weirdly scaled charts if combo data of datasets that have lots of data and few data
-		$newData=array();
-		foreach($data as $row) {
-			if($row['epoch']<$newestStartTime) continue;
-			if($row['epoch']>$oldestEndTime) continue;
-			$row['date']=date('Y-m',$row['epoch']);
-			array_push($newData,$row);
-		}
-		$data=$newData;
 
 
 

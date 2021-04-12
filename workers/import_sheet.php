@@ -79,6 +79,8 @@
 					$value=str_replace('$','',$value);
 					$value=str_replace(',','',$value);
 				}
+				$value=str_replace('#N/A','',$value);
+				$value=str_replace('N/A','',$value);
 				$row[$key]=$value;
 			}
 			array_push($newRows,$row);
