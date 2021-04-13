@@ -960,12 +960,12 @@
 					In last
 				</div>
 				<select class="time_selector">
-					<option value="1 year" <?if($time_selected_default=='1 year'){?>selected<?}?> <?if($_GET['time']=='1 year'){?>selected<?}?>>🗓 1 year</option>
-					<option value="5 years" <?if($time_selected_default=='5 years'){?>selected<?}?> <?if($_GET['time']=='5 years'){?>selected<?}?>>🗓 5 years</option>
-					<option value="10 years" <?if($time_selected_default=='10 years'){?>selected<?}?> <?if($_GET['time']=='10 years'){?>selected<?}?>>🗓 10 years</option>
-					<option value="20 years" <?if($time_selected_default=='20 years'){?>selected<?}?> <?if($_GET['time']=='20 years'){?>selected<?}?>>🗓 20 years</option>
-					<option value="50 years" <?if($time_selected_default=='50 years'){?>selected<?}?> <?if($_GET['time']=='50 years'){?>selected<?}?>>🗓 50 years</option>
-					<option value="all" <?if($time_selected_default=='all'){?>selected<?}?> <?if($_GET['time']=='all'){?>selected<?}?>>🗓 all time</option>
+					<option value="1 year" <?if(!$_GET['time'] && $time_selected_default=='1 year'){?>selected<?}?> <?if($_GET['time']=='1 year'){?>selected<?}?>>🗓 1 year</option>
+					<option value="5 years" <?if(!$_GET['time'] && $time_selected_default=='5 years'){?>selected<?}?> <?if($_GET['time']=='5 years'){?>selected<?}?>>🗓 5 years</option>
+					<option value="10 years" <?if(!$_GET['time'] && $time_selected_default=='10 years'){?>selected<?}?> <?if($_GET['time']=='10 years'){?>selected<?}?>>🗓 10 years</option>
+					<option value="20 years" <?if(!$_GET['time'] && $time_selected_default=='20 years'){?>selected<?}?> <?if($_GET['time']=='20 years'){?>selected<?}?>>🗓 20 years</option>
+					<option value="50 years" <?if(!$_GET['time'] && $time_selected_default=='50 years'){?>selected<?}?> <?if($_GET['time']=='50 years'){?>selected<?}?>>🗓 50 years</option>
+					<option value="all" <?if(!$_GET['time'] && $time_selected_default=='all'){?>selected<?}?> <?if($_GET['time']=='all'){?>selected<?}?>>🗓 all time</option>
 				</select>
 			</div>
 		</h1>
