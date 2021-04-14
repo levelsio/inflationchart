@@ -1695,9 +1695,9 @@
 						chart.options.scales.yAxes[0].ticks.max=chart.options.scales.yAxes[0].ticks.max*scaler;
 						chart.options.scales.yAxes[1].ticks.max=chart.options.scales.yAxes[1].ticks.max*scaler;
 					}
-					if(chart.options.scales.yAxes[1].ticks.max<stock_or_adjusted_max) {
-						console.log(chart.options.scales.yAxes[1].ticks.max,'<',stock_or_adjusted_max);
-						var scaler=stock_or_adjusted_max/chart.options.scales.yAxes[1].ticks.max;
+					if(chart.options.scales.yAxes[1].ticks.max<adjuster_max) {
+						console.log(chart.options.scales.yAxes[1].ticks.max,'<',adjuster_max);
+						var scaler=adjuster_max/chart.options.scales.yAxes[1].ticks.max;
 						chart.options.scales.yAxes[1].ticks.max=chart.options.scales.yAxes[1].ticks.max*scaler;
 						chart.options.scales.yAxes[0].ticks.max=chart.options.scales.yAxes[0].ticks.max*scaler;
 					}
