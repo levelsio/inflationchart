@@ -1647,6 +1647,24 @@
 			}
 
 			/* <set min & max> */
+				if(show_adjusted && show_stock &&  stock_min>adjusted_min) {
+					var stock_or_adjusted_min=adjusted_min;
+				}
+				else if(show_stock) {
+					var stock_or_adjusted_min=stock_min;
+				}
+				else if(show_adjusted) {
+					var stock_or_adjusted_min=adjusted_min;
+				}
+				
+				chart.options.scales.yAxes[0].ticks.min=stock_or_adjusted_min; /* adj by shd follow same as stock min/max to align */
+				chart.options.scales.yAxes[1].ticks.min=adjuster_min;
+				chart.options.scales.yAxes[2].ticks.min=divided_by_min;
+				chart.options.scales.yAxes[3].ticks.min=stock_or_adjusted_min; /* adj by shd follow same as stock min/max to align */
+
+
+
+
 				if(show_adjusted && show_stock && stock_max<adjusted_max) {
 					var stock_or_adjusted_max=adjusted_max;
 				}
@@ -1662,20 +1680,20 @@
 				chart.options.scales.yAxes[2].ticks.max=divided_by_max;
 				chart.options.scales.yAxes[3].ticks.max=stock_or_adjusted_max; /* adj by shd follow same as stock min/max to align */
 
-				if(show_adjusted && show_stock &&  stock_min>adjusted_min) {
-					var stock_or_adjusted_min=adjusted_min;
+
+
+				// chart.options.scales.yAxes[0].ticks.min=0;
+				// chart.options.scales.yAxes[1].ticks.min=0;
+
+				/* make stock and adjuster scaled in axis */
+				if(chart.options.scales.yAxes[0].ticks.max>chart.options.scales.yAxes[1].ticks.max) {
+					chart.options.scales.yAxes[0].ticks.max=chart.options.scales.yAxes[1].ticks.max/chart.options.scales.yAxes[1].ticks.min*chart.options.scales.yAxes[0].ticks.min;
 				}
-				else if(show_stock) {
-					var stock_or_adjusted_min=stock_min;
+				else {
+					chart.options.scales.yAxes[1].ticks.max=chart.options.scales.yAxes[0].ticks.max/chart.options.scales.yAxes[0].ticks.min*chart.options.scales.yAxes[1].ticks.min;
 				}
-				else if(show_adjusted) {
-					var stock_or_adjusted_min=adjusted_min;
-				}
-				
-				chart.options.scales.yAxes[0].ticks.min=stock_or_adjusted_min; /* adj by shd follow same as stock min/max to align */
-				chart.options.scales.yAxes[1].ticks.min=adjuster_min;
-				chart.options.scales.yAxes[2].ticks.min=divided_by_min;
-				chart.options.scales.yAxes[3].ticks.min=stock_or_adjusted_min; /* adj by shd follow same as stock min/max to align */
+
+
 			/* </set min & max> */
 
 			var iterator=0;
