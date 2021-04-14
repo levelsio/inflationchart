@@ -1648,13 +1648,13 @@
 
 			/* <set min & max> */
 				if(show_adjusted && show_stock &&  stock_min>adjusted_min) {
-					var stock_or_adjusted_min=adjusted_min;
+					stock_or_adjusted_min=adjusted_min;
 				}
 				else if(show_stock) {
-					var stock_or_adjusted_min=stock_min;
+					stock_or_adjusted_min=stock_min;
 				}
 				else if(show_adjusted) {
-					var stock_or_adjusted_min=adjusted_min;
+					stock_or_adjusted_min=adjusted_min;
 				}
 				
 				chart.options.scales.yAxes[0].ticks.min=stock_or_adjusted_min; /* adj by shd follow same as stock min/max to align */
@@ -1666,13 +1666,13 @@
 
 
 				if(show_adjusted && show_stock && stock_max<adjusted_max) {
-					var stock_or_adjusted_max=adjusted_max;
+					stock_or_adjusted_max=adjusted_max;
 				}
 				else if(show_stock) {
-					var stock_or_adjusted_max=stock_max;
+					stock_or_adjusted_max=stock_max;
 				}
 				else if(show_adjusted) {
-					var stock_or_adjusted_max=adjusted_max;
+					stock_or_adjusted_max=adjusted_max;
 				}
 				
 				chart.options.scales.yAxes[0].ticks.max=stock_or_adjusted_max;
@@ -1685,13 +1685,24 @@
 				// chart.options.scales.yAxes[0].ticks.min=0;
 				// chart.options.scales.yAxes[1].ticks.min=0;
 
-				/* make stock and adjuster scaled in axis */
-				if(chart.options.scales.yAxes[0].ticks.max>chart.options.scales.yAxes[1].ticks.max) {
+				/* <make stock and adjuster scaled in axis> */
 					chart.options.scales.yAxes[0].ticks.max=chart.options.scales.yAxes[1].ticks.max/chart.options.scales.yAxes[1].ticks.min*chart.options.scales.yAxes[0].ticks.min;
-				}
-				else {
-					chart.options.scales.yAxes[1].ticks.max=chart.options.scales.yAxes[0].ticks.max/chart.options.scales.yAxes[0].ticks.min*chart.options.scales.yAxes[1].ticks.min;
-				}
+
+					// check if data doesn't fall out of max, if so scale it up on both so both data shows properly in bounds
+					if(chart.options.scales.yAxes[0].ticks.max<stock_or_adjusted_max) {
+						console.log(chart.options.scales.yAxes[0].ticks.max,'<',stock_or_adjusted_max);
+						var scaler=stock_or_adjusted_max/chart.options.scales.yAxes[0].ticks.max;
+						chart.options.scales.yAxes[0].ticks.max=chart.options.scales.yAxes[0].ticks.max*scaler;
+						chart.options.scales.yAxes[1].ticks.max=chart.options.scales.yAxes[1].ticks.max*scaler;
+					}
+					if(chart.options.scales.yAxes[1].ticks.max<stock_or_adjusted_max) {
+						console.log(chart.options.scales.yAxes[1].ticks.max,'<',stock_or_adjusted_max);
+						var scaler=stock_or_adjusted_max/chart.options.scales.yAxes[1].ticks.max;
+						chart.options.scales.yAxes[1].ticks.max=chart.options.scales.yAxes[1].ticks.max*scaler;
+						chart.options.scales.yAxes[0].ticks.max=chart.options.scales.yAxes[0].ticks.max*scaler;
+					}
+				/* </make stock and adjuster scaled in axis> */
+
 
 
 			/* </set min & max> */
