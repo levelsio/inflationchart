@@ -106,6 +106,8 @@
 			'us10y'=>'💲 10Y Treasury',
 			'cpi'=>'🛒 CPI',
 			'spx'=>'🇺🇸 S&P500',
+			'dji'=>'🇺🇸 DJI',
+			'nasdaq'=>'🤖 NASDAQ',
 			// 'levels'=>'🐩 Levels Inflation Index',
 			'oil'=>'🛢 Oil',
 			'gold'=>'🏆 Gold',
@@ -1434,6 +1436,10 @@
 						if(dataset.id==adjuster_selected+'_adjuster') {
 							/* <set chart max for adjuster> */
 								adjuster_min=findMin(chart.data.datasets[animationFindDatasetIndexIterator]['data']);
+
+/* try use first value as min instead */
+// adjuster_min=chart.data.datasets[animationFindDatasetIndexIterator]['data'][0];
+
 								adjuster_max=findMax(chart.data.datasets[animationFindDatasetIndexIterator]['data']);
 							/* </set chart max for adjuster> */
 
@@ -1445,6 +1451,9 @@
 						if(dataset.id==stock_selected) {
 							/* <set chart max for stock> */
 								stock_min=findMin(chart.data.datasets[animationFindDatasetIndexIterator]['data']);
+
+/* try use first value as min instead */
+// stock_min=chart.data.datasets[animationFindDatasetIndexIterator]['data'][0];
 								stock_max=findMax(chart.data.datasets[animationFindDatasetIndexIterator]['data']);
 							/* </set chart max for stock> */
 
@@ -1462,6 +1471,7 @@
 						if(dataset.id==adjuster_selected+'_adj_'+stock_selected) {
 							/* <set chart max for adjusted> */
 								adjusted_min=findMin(chart.data.datasets[animationFindDatasetIndexIterator]['data']);
+
 								adjusted_max=findMax(chart.data.datasets[animationFindDatasetIndexIterator]['data']);
 							/* </set chart max for adjusted> */
 
@@ -1701,6 +1711,21 @@
 						chart.options.scales.yAxes[1].ticks.max=chart.options.scales.yAxes[1].ticks.max*scaler;
 						chart.options.scales.yAxes[0].ticks.max=chart.options.scales.yAxes[0].ticks.max*scaler;
 					}
+
+					// if(chart.options.scales.yAxes[0].ticks.min>stock_or_adjusted_min) {
+					// 	console.log(chart.options.scales.yAxes[0].ticks.min,'<',stock_or_adjusted_min);
+					// 	var scaler=stock_or_adjusted_min/chart.options.scales.yAxes[0].ticks.min;
+					// 	chart.options.scales.yAxes[0].ticks.min=chart.options.scales.yAxes[0].ticks.min/scaler;
+					// 	chart.options.scales.yAxes[1].ticks.min=chart.options.scales.yAxes[1].ticks.min/scaler;
+					// }
+					
+					// if(chart.options.scales.yAxes[1].ticks.min>adjuster_min) {
+					// 	console.log(chart.options.scales.yAxes[1].ticks.min,'<',adjuster_min);
+					// 	var scaler=adjuster_min/chart.options.scales.yAxes[1].ticks.min;
+					// 	chart.options.scales.yAxes[1].ticks.min=chart.options.scales.yAxes[1].ticks.min/scaler;
+					// 	chart.options.scales.yAxes[0].ticks.min=chart.options.scales.yAxes[0].ticks.min/scaler;
+					// }
+
 				/* </make stock and adjuster scaled in axis> */
 
 
