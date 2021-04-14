@@ -95,6 +95,7 @@
 
 		$suffix=array(
 			'us10y'=>'%',
+			'rent'=>'$/mo',
 			'coffee'=>'$/lbs',
 		);
 
