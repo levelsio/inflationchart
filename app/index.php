@@ -1666,6 +1666,9 @@
 				else if(show_adjusted) {
 					stock_or_adjusted_min=adjusted_min;
 				}
+				else {
+					stock_or_adjusted_min=stock_min;
+				}
 				
 				chart.options.scales.yAxes[0].ticks.min=stock_or_adjusted_min; /* adj by shd follow same as stock min/max to align */
 				chart.options.scales.yAxes[1].ticks.min=adjuster_min;
