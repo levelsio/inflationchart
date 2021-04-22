@@ -1687,6 +1687,9 @@
 				else if(show_adjusted) {
 					stock_or_adjusted_max=adjusted_max;
 				}
+				else {
+					stock_or_adjusted_max=stock_max;
+				}
 				
 				chart.options.scales.yAxes[0].ticks.max=stock_or_adjusted_max;
 				chart.options.scales.yAxes[1].ticks.max=adjuster_max;
