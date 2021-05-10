@@ -8,4 +8,4 @@ The site is accessible from https://inflationchart.com
 The database is open and available from https://docs.google.com/spreadsheets/d/1xJGrHWj6uO6ykFPvht-RBG5qlLeO0axraxUJ9UzOhFo
 
 # Code
-All code of the project is open to and in this repo
+All code of the project is open to copy and in this repo
