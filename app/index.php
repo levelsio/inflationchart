@@ -2,10 +2,19 @@
 	
 	require_once(__DIR__.'/../app/apiKeys.php');
 
+	$defaultAdjuster='m3';
+	$defaultStock='spx';
+
 	// <router>
 		if(stripos($_GET['url'],'sp500')) {
 			header("HTTP/1.1 301 Moved Permanently");
 			header("Location:".str_replace('sp500','spx',$_SERVER['REQUEST_URI']));
+			exit;
+		}
+		if(stripos($_GET['url'],'m1')) {
+			// m1 is discontinued by Fed
+			header("HTTP/1.1 301 Moved Permanently");
+			header("Location:".str_replace('m1','m3',$_SERVER['REQUEST_URI']));
 			exit;
 		}
 		if($_SERVER['HTTP_HOST']=='m1chart.com') {
@@ -32,8 +41,8 @@
 			$_GET['show_adjuster']=1;
 		}
 		if(empty($_GET)) {
-			$_GET['adjuster']='m1';
-			$_GET['stock']='spx';
+			$_GET['adjuster']=$defaultAdjuster;
+			$_GET['stock']=$defaultStock;
 		}
 	// </router>
 
@@ -101,7 +110,7 @@
 
 		$adjusters=array(
 			'mb'=>'💸 M0: Cash',
-			'm1'=>'💳 M1: Cash + Bank',
+			// 'm1'=>'💳 M1: Cash + Bank',
 			'm3'=>'💰 M3: All Money',
 			'us10y'=>'💲 10Y Treasury',
 			'cpi'=>'🛒 CPI',
@@ -135,13 +144,13 @@
 			empty($_GET['stock']) || 
 			!$stocks[$_GET['stock']]
 		) {
-			$stock_selected='spx';
+			$stock_selected=$defaultStock;
 		}
 		if(
 			empty($_GET['adjuster']) || 
 			!$adjusters[$_GET['adjuster']]
 		) {
-			$adjuster_selected='m1';
+			$adjuster_selected=$defaultAdjuster;
 		}
 	// </config>
 
