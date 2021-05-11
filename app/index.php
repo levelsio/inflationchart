@@ -100,7 +100,8 @@
 			'bigmac'=>'🍔 Big Mac Index',
 			'btc'=>'🥇 BTC',
 			'eth'=>'🏅 ETH',
-			'tsla'=>'🚗 $TSLA'
+			'tsla'=>'🚗 $TSLA',
+			'levelso'=>'👦🏼 levelsio',
 		);
 
 		$suffix=array(
@@ -132,6 +133,7 @@
 			'eth'=>'🏅 ETH',
 			'income'=>'💰 US Income',
 			'minwage'=>'💰 US Min Wage',
+			'levelso'=>'👦🏼 levelsio',
 		);
 
 		$info=array(
