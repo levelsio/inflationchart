@@ -101,7 +101,7 @@
 			'btc'=>'🥇 BTC',
 			'eth'=>'🏅 ETH',
 			'tsla'=>'🚗 $TSLA',
-			'levelso'=>'👦🏼 levelsio',
+			'levelsio'=>'👦🏼 levelsio',
 		);
 
 		$suffix=array(
@@ -119,7 +119,6 @@
 			'spx'=>'🇺🇸 S&P500',
 			'dji'=>'🇺🇸 DJI',
 			'nasdaq'=>'🤖 NASDAQ',
-			// 'levels'=>'🐩 Levels Inflation Index',
 			'oil'=>'🛢 Oil',
 			'lumber'=>'🌳 Lumber',
 			'gold'=>'🏆 Gold',
@@ -133,7 +132,7 @@
 			'eth'=>'🏅 ETH',
 			'income'=>'💰 US Income',
 			'minwage'=>'💰 US Min Wage',
-			'levelso'=>'👦🏼 levelsio',
+			'levelsio'=>'👦🏼 levelsio',
 		);
 
 		$info=array(
