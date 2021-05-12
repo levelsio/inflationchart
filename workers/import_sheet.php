@@ -98,7 +98,7 @@
 				continue;
 			}
 
-			$query = $inflationchartDb->prepare('REPLACE INTO inflationchart(epoch,m1,m2,m3,mb,cpi,gdp,income,bigmac,spx,dji,asia,singapore,china,nasdaq,btc,home,rent,food,food_and_home,levels,coffee,oil,lumber,us10y,minwage,gold,copper,silver,eth,tsla,nomadlist,remoteok,makebook,levelsio,population,date,epoch_updated) values (:epoch,:m1,:m2,:m3,:mb,:cpi,:gdp,:income,:bigmac,:spx,:dji,:asia,:singapore,:china,:nasdaq,:btc,:home,:rent,:food,:food_and_home,:levels,:coffee,:oil,:lumber,:us10y,:minwage,:gold,:copper,:silver,:eth,:tsla,:nomadlist,:remoteok,:makebook,:levelsio,:population,:date,:epoch_updated);');
+			$query = $inflationchartDb->prepare('REPLACE INTO inflationchart(epoch,m1,m2,m3,mb,cpi,gdp,income,bigmac,spx,dji,asia,singapore,china,nasdaq,btc,home,rent,food,food_and_home,coffee,oil,lumber,us10y,minwage,gold,copper,silver,eth,tsla,nomadlist,remoteok,makebook,levelsio,population,date,epoch_updated) values (:epoch,:m1,:m2,:m3,:mb,:cpi,:gdp,:income,:bigmac,:spx,:dji,:asia,:singapore,:china,:nasdaq,:btc,:home,:rent,:food,:food_and_home,:coffee,:oil,:lumber,:us10y,:minwage,:gold,:copper,:silver,:eth,:tsla,:nomadlist,:remoteok,:makebook,:levelsio,:population,:date,:epoch_updated);');
 			$query->bindValue(':epoch',strtotime($row['date']));
 			$query->bindValue(':m1',$row['m1']);
 			$query->bindValue(':m2',$row['m2']);
@@ -119,7 +119,6 @@
 			$query->bindValue(':rent',$row['rent']);
 			$query->bindValue(':food',$row['food']);
 			$query->bindValue(':food_and_home',$row['food_and_home']);
-			$query->bindValue(':levels',$row['levels']);
 			$query->bindValue(':coffee',$row['coffee']);
 			$query->bindValue(':oil',$row['oil']);
 			$query->bindValue(':lumber',$row['lumber']);
