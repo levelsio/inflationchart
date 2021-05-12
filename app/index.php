@@ -2642,6 +2642,7 @@ function sendToAdminTelegram($message) {
 	// file_get_contents('https://api.telegram.org/bot'.$telegram_bot_token.'/sendMessage?chat_id='.$telegram_chat_id.'&parse_mode=markdown&disable_web_page_preview=true&text='.urlencode($message).'&disable_web_page_preview=true');
 	// use shell exec to do it async and not slow down entire site
 	$text=$message;
+	$message='inflationchart '.' '.$_SERVER["SCRIPT_NAME"].' '.__FILE__.' '.$message;
 	// shell_exec('curl '.escapeshellarg('https://api.telegram.org/bot'.$telegram_bot_token.'/sendMessage?chat_id='.$telegram_chat_id.'&text='.urlencode($text).'&parse_mode=markdown&disable_web_page_preview=true').' > /dev/null 1>/dev/null &');
 	shell_exec('curl '.escapeshellarg('https://api.telegram.org/bot'.$telegram_bot_token.'/sendMessage?chat_id='.$telegram_chat_id.'&text='.urlencode($text).'&parse_mode=markdown&disable_web_page_preview=true').' > /dev/null 1>/dev/null &');
 }
