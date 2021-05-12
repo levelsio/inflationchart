@@ -2637,7 +2637,7 @@ function curl_get_contents ($url) {
 		curl_close($ch);
 		return $output;
 }
-function sendToAdminTelegram($message) 
+function sendToAdminTelegram($message) {
 	global $config;
 	$telegram_bot_token=$config['telegramAdminChat']['bot_token'];
 	$telegram_chat_id=$config['telegramAdminChat']['chat_id'];
