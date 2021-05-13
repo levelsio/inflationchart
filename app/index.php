@@ -1706,9 +1706,13 @@
 				}
 				
 				chart.options.scales.yAxes[0].ticks.max=stock_or_adjusted_max;
+
+				
 				chart.options.scales.yAxes[1].ticks.max=adjuster_max;
 				chart.options.scales.yAxes[2].ticks.max=divided_by_max;
 				chart.options.scales.yAxes[3].ticks.max=stock_or_adjusted_max; /* adj by shd follow same as stock min/max to align */
+
+
 
 
 
@@ -1716,36 +1720,37 @@
 				// chart.options.scales.yAxes[1].ticks.min=0;
 
 				/* <make stock and adjuster scaled in axis> */
-					chart.options.scales.yAxes[0].ticks.max=chart.options.scales.yAxes[1].ticks.max/chart.options.scales.yAxes[1].ticks.min*chart.options.scales.yAxes[0].ticks.min;
+					if(show_adjusted || show_stock) {
+						chart.options.scales.yAxes[0].ticks.max=chart.options.scales.yAxes[1].ticks.max/chart.options.scales.yAxes[1].ticks.min*chart.options.scales.yAxes[0].ticks.min;
 
-					// check if data doesn't fall out of max, if so scale it up on both so both data shows properly in bounds
-					if(chart.options.scales.yAxes[0].ticks.max<stock_or_adjusted_max) {
-						console.log(chart.options.scales.yAxes[0].ticks.max,'<',stock_or_adjusted_max);
-						var scaler=stock_or_adjusted_max/chart.options.scales.yAxes[0].ticks.max;
-						chart.options.scales.yAxes[0].ticks.max=chart.options.scales.yAxes[0].ticks.max*scaler;
-						chart.options.scales.yAxes[1].ticks.max=chart.options.scales.yAxes[1].ticks.max*scaler;
+						// check if data doesn't fall out of max, if so scale it up on both so both data shows properly in bounds
+						if(chart.options.scales.yAxes[0].ticks.max<stock_or_adjusted_max) {
+							console.log(chart.options.scales.yAxes[0].ticks.max,'<',stock_or_adjusted_max);
+							var scaler=stock_or_adjusted_max/chart.options.scales.yAxes[0].ticks.max;
+							chart.options.scales.yAxes[0].ticks.max=chart.options.scales.yAxes[0].ticks.max*scaler;
+							chart.options.scales.yAxes[1].ticks.max=chart.options.scales.yAxes[1].ticks.max*scaler;
+						}
+						if(chart.options.scales.yAxes[1].ticks.max<adjuster_max) {
+							console.log(chart.options.scales.yAxes[1].ticks.max,'<',adjuster_max);
+							var scaler=adjuster_max/chart.options.scales.yAxes[1].ticks.max;
+							chart.options.scales.yAxes[1].ticks.max=chart.options.scales.yAxes[1].ticks.max*scaler;
+							chart.options.scales.yAxes[0].ticks.max=chart.options.scales.yAxes[0].ticks.max*scaler;
+						}
+
+						// if(chart.options.scales.yAxes[0].ticks.min>stock_or_adjusted_min) {
+						// 	console.log(chart.options.scales.yAxes[0].ticks.min,'<',stock_or_adjusted_min);
+						// 	var scaler=stock_or_adjusted_min/chart.options.scales.yAxes[0].ticks.min;
+						// 	chart.options.scales.yAxes[0].ticks.min=chart.options.scales.yAxes[0].ticks.min/scaler;
+						// 	chart.options.scales.yAxes[1].ticks.min=chart.options.scales.yAxes[1].ticks.min/scaler;
+						// }
+						
+						// if(chart.options.scales.yAxes[1].ticks.min>adjuster_min) {
+						// 	console.log(chart.options.scales.yAxes[1].ticks.min,'<',adjuster_min);
+						// 	var scaler=adjuster_min/chart.options.scales.yAxes[1].ticks.min;
+						// 	chart.options.scales.yAxes[1].ticks.min=chart.options.scales.yAxes[1].ticks.min/scaler;
+						// 	chart.options.scales.yAxes[0].ticks.min=chart.options.scales.yAxes[0].ticks.min/scaler;
+						// }
 					}
-					if(chart.options.scales.yAxes[1].ticks.max<adjuster_max) {
-						console.log(chart.options.scales.yAxes[1].ticks.max,'<',adjuster_max);
-						var scaler=adjuster_max/chart.options.scales.yAxes[1].ticks.max;
-						chart.options.scales.yAxes[1].ticks.max=chart.options.scales.yAxes[1].ticks.max*scaler;
-						chart.options.scales.yAxes[0].ticks.max=chart.options.scales.yAxes[0].ticks.max*scaler;
-					}
-
-					// if(chart.options.scales.yAxes[0].ticks.min>stock_or_adjusted_min) {
-					// 	console.log(chart.options.scales.yAxes[0].ticks.min,'<',stock_or_adjusted_min);
-					// 	var scaler=stock_or_adjusted_min/chart.options.scales.yAxes[0].ticks.min;
-					// 	chart.options.scales.yAxes[0].ticks.min=chart.options.scales.yAxes[0].ticks.min/scaler;
-					// 	chart.options.scales.yAxes[1].ticks.min=chart.options.scales.yAxes[1].ticks.min/scaler;
-					// }
-					
-					// if(chart.options.scales.yAxes[1].ticks.min>adjuster_min) {
-					// 	console.log(chart.options.scales.yAxes[1].ticks.min,'<',adjuster_min);
-					// 	var scaler=adjuster_min/chart.options.scales.yAxes[1].ticks.min;
-					// 	chart.options.scales.yAxes[1].ticks.min=chart.options.scales.yAxes[1].ticks.min/scaler;
-					// 	chart.options.scales.yAxes[0].ticks.min=chart.options.scales.yAxes[0].ticks.min/scaler;
-					// }
-
 				/* </make stock and adjuster scaled in axis> */
 
 
