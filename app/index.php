@@ -685,7 +685,7 @@
 		background:rgba(255,71,66,0.125);
 	}
 
-	@media (max-width:1300px) {
+	@media (max-width:1500px) {
 		.aux-text {
 			line-height:1.5;
 			font-size:12px;
@@ -969,19 +969,16 @@
 		</strong>
 	</p>
 	<p>
-		👶 Let's start: select [M1-adjusted] [S&P500] in [last 20 years] first on top. M1 is the money base, which means all $ in circulation. S&P500 is the most important stock market index of 500 big American companies.
+		👶 Let's start: select [S&P500] and [M3: All Money] in [all time] first on top. M3 is all US money in circulation. S&P500 is the most important stock market index of 500 big American companies.
 	</p>
 	<p>
-		The 🟢green line is the actual price of the S&P500 in history up to today. The 🔴red line converges to the same price the closer we get to the past (the left end of the chart). 
+		The 🟢green line is the actual price of the S&P500 throughout history up to today. The 🔵blue line is the M3 money in circulation. The 🔴red line is the S&P500 divided by the M3.
 	</p>
 	<p>
-		But if you go forward in time (the right end of the chart) the lines start dispersing. The price of the S&P500 in the year 2000 is ~$1,400. But adjusted by the <a href="https://fred.stlouisfed.org/series/BOGMBASE">money base (MB)</a>, it is ~$400 in today's prices, or ~3x less. That's because in those 20 years, the MB grew by 8x. For every 1 dollar that was in existence in the year 2000, there's now 8 dollars. You could then expect the value of the S&P500 to also grow by at least 8x. That'd mean the value stayed at least the same. But the S&P500 only grew by 2.6x. 8x divided by 2.6x means there's been a decrease in real value of the S&P500 about ~3x (if adjusted by the money base, MB). That 3x is the same as the 3x we found comparing the price of the S&P500 in the year 2000 and the MB-adjusted price today.
+		the decrease in real value is visible in the chart at specific moments. Look at the 🔴red line in 2008, when there was the <a href="https://en.wikipedia.org/wiki/Financial_crisis_of_2007%E2%80%932008">Financial Crisis</a> and at 2020 when the <a href="https://en.wikipedia.org/wiki/COVID-19_pandemic">COVID-19 Pandemic</a> started. That's moments when the Federal Reserve and other central banks started printing lots of money from thin air. You don't see that in the 🟢green line as that's the official prices and it looks like prices have never been so high. But if you look at the 🔴red line the S&P500 has barely recovered since 2007. That doesn't mean it's some conspiracy. It just means the nominal/official prices of stock markets and stocks don't tell the whole story of the economy and if it is actually growing or not.
 	</p>
 	<p>
-		That decrease in real value is visible in the chart at specific moments. Look at the 🔴red line in 2008, when there was the <a href="https://en.wikipedia.org/wiki/Financial_crisis_of_2007%E2%80%932008">Financial Crisis</a> and at 2020 when the <a href="https://en.wikipedia.org/wiki/COVID-19_pandemic">COVID-19 Pandemic</a> started. That's moments when the Federal Reserve and other central banks started printing lots of money from thin air. You don't see that in the 🟢green line as that's the official prices. That doesn't mean it's some conspiracy. It just means the nominal/official prices of stock markets and stocks don't tell the whole story of the economy is actually growing or not.
-	</p>
-	<p>
-		There's more indicators you can adjust by then just the money base. Try a few by clicking on the [-adjusted] select box top left and changing it. You can also change what you'd like to adjust by clicking the second select box. And you can change the time view with the third box. Happy researching!
+		There's more indicators you can adjust by. Try a few by clicking on the [-adjusted] select box top left and changing it. You can also change what you'd like to adjust by clicking the second select box. And you can change the time view with the third box. Happy researching!
 	</p>
 
 	<p>
