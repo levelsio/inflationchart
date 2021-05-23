@@ -2473,10 +2473,10 @@
 			What is this?
 		</strong><br/>
 
-		📈 This chart shows 🟢<span style="color:rgb(43,222,115)">the nominal price</span> vs. 🔴<span style="color:rgb(255,71,66)">the real value</span> (as adjusted for inflation) of the stock market (or another value you select). You can inflation-adjust it by the U.S.-dollar money supply M1, M2 or MB (the money base), CPI, Big Mac, Gold, BTC and ETH.
+		📈 This chart shows 🟢<span style="color:rgb(43,222,115)">the absolutely price</span> (like the price you see in the real world) vs. 🔴<span style="color:rgb(255,71,66)">the inflation-adjusted price</span> of the stock market (or another market indicator you select). You can inflation-adjust it by the U.S.-dollar money supply M1, M2 or MB (the money base), CPI, Big Mac, Gold, BTC, ETH or many other adjusters.
 	</p>
 	<p>
-		📉 Combining data sets we can adjust the stock market and home prices with the actual money supply, and find that even if <span style="color:rgb(43,222,115)">it looks like stock markets and home prices are going up</span>, they <span style="color:rgb(255,71,66)">may actually be going down in real value</span>. 
+		📉 Combining data sets we can adjust the stock market, or home prices, or food prices, for inflation and find that even if <span style="color:rgb(43,222,115)">it looks like stock markets and home prices are going up</span>, they <span style="color:rgb(255,71,66)">may actually be going down in real value</span>. 
 	</p>
 
 
