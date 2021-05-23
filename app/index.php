@@ -637,9 +637,9 @@
 		right:0;
 	}
 	.main {
-		width:calc(100% - 300px - 28px);
+		width:calc(100% - 300px);
 		/*height:100vh;*/
-		margin-right:calc(300px + 28px);
+		margin-right: 300px;
 		overflow-y:hidden;
 		background:none;
 		position:fixed;
