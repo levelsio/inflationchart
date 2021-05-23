@@ -642,6 +642,7 @@
 		margin-right:calc(300px + 28px);
 		overflow-y:hidden;
 		background:none;
+		position:fixed;
 	}
 
 	.main .chart {
