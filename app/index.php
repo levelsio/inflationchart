@@ -2448,7 +2448,7 @@
 
 		<a target="_new" href="https://coinbase.com/join/hoogho_i" class="aux-text">
 		<?/*<a target="_new" href="https://ibkr.com/referral/pieter414" class="aux-text">*/?>
-			Invest wisely and you can maintain or increase your standard of life. Invest poorly and the road to serfdom is real. <span class="button">Invest in Crypto</span><?/*<span class="button">Invest with IBKR</span>*/?>
+			Invest wisely and you can maintain or increase your standard of life. Invest poorly and the road to serfdom is real. <span class="button">Invest in crypto</span><?/*<span class="button">Invest with IBKR</span>*/?>
 		</a>
 
 
