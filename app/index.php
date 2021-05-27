@@ -694,7 +694,6 @@
 		}
 		.aux-text .button {
 			margin:0 auto;
-			margin-top:7px;
 			padding:3.5px;
 		}
 	}
