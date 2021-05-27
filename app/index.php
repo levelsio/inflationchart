@@ -693,7 +693,6 @@
 			padding:14px;
 		}
 		.aux-text .button {
-			display:table;
 			margin:0 auto;
 			margin-top:7px;
 			padding:3.5px;
