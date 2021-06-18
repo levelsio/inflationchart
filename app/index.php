@@ -2650,6 +2650,7 @@ function sendToAdminTelegram($message) {
 	global $config;
 	$telegram_bot_token=$config['telegramAdminChat']['bot_token'];
 	$telegram_chat_id=$config['telegramAdminChat']['chat_id'];
+	file_put_contents('/srv/lastAdminTelegramTimestamp.txt',time());
 	// file_get_contents('https://api.telegram.org/bot'.$telegram_bot_token.'/sendMessage?chat_id='.$telegram_chat_id.'&parse_mode=markdown&disable_web_page_preview=true&text='.urlencode($message).'&disable_web_page_preview=true');
 	// use shell exec to do it async and not slow down entire site
 	$text=$message;
