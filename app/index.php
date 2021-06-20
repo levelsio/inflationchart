@@ -2490,13 +2490,13 @@
 		</strong>
 	</p>
 	<p>
-		👶 Let's start: select [S&P500] and [M3: All Money] in [all time] first on top. M3 is all US money in circulation. S&P500 is the most important stock market index of 500 big American companies.
+		👶 Let's start: select [S&P500] and [M3: All Money] in [all time] on the top of this page. S&P500 is the most important stock market index of 500 big American companies. M3 is all US money in circulation. Make sure [S&P500], [M3], and [S&P500 / M3] is enabled in the top left legend.
 	</p>
 	<p>
 		The 🟢green line is the actual price of the S&P500 throughout history up to today. The 🔵blue line is the M3 money in circulation. The 🔴red line is the S&P500 divided by the M3.
 	</p>
 	<p>
-		the decrease in real value is visible in the chart at specific moments. Look at the 🔴red line in 2008, when there was the <a href="https://en.wikipedia.org/wiki/Financial_crisis_of_2007%E2%80%932008">Financial Crisis</a> and at 2020 when the <a href="https://en.wikipedia.org/wiki/COVID-19_pandemic">COVID-19 Pandemic</a> started. That's moments when the Federal Reserve and other central banks started printing lots of money from thin air. You don't see that in the 🟢green line as that's the official prices and it looks like prices have never been so high. But if you look at the 🔴red line the S&P500 has barely recovered since 2007. That doesn't mean it's some conspiracy. It just means the nominal/official prices of stock markets and stocks don't tell the whole story of the economy and if it is actually growing or not.
+		The decrease in real value is visible in the chart at specific moments. Look at the 🔴red line in 2008, when there was the <a href="https://en.wikipedia.org/wiki/Financial_crisis_of_2007%E2%80%932008">Financial Crisis</a> and at 2020 when the <a href="https://en.wikipedia.org/wiki/COVID-19_pandemic">COVID-19 Pandemic</a> started. That's moments when the Federal Reserve and other central banks started printing lots of money from thin air. You don't see that in the 🟢green line as that's the official prices and it looks like prices have never been so high. But if you look at the 🔴red line the S&P500 has barely recovered since 2007. That doesn't mean it's some conspiracy. It just means the nominal/official prices of stock markets and stocks don't tell the whole story of the economy and if it is actually growing or not.
 	</p>
 	<p>
 		There's more indicators you can adjust by. Try a few by clicking on the select box top left and changing it. You can also change what you'd like to adjust by, by clicking the right select box. And you can change the time view with the third box. Happy researching!
