@@ -2652,7 +2652,7 @@ function sendToAdminTelegram($message) {
 	$telegram_chat_id=$config['telegramAdminChat']['chat_id'];
 	$text=$message;
 	if(stripos($message,'❌')!==false) file_put_contents('/srv/lastAdminTelegramTimestamp.txt',time()."\n".$message);
-	shell_exec('curl '.escapeshellarg('https://api.telegram.org/bot'.$telegram_bot_token.'/sendMessage?chat_id='.$telegram_chat_id.'&text='.urlencode($text).'&parse_mode=markdown&disable_web_page_preview=true').' > /dev/null 1>/dev/null &');
+	shell_exec('curl '.escapeshellarg('https://api.telegram.org/bot'.$telegram_bot_token.'/sendMessage?chat_id='.$telegram_chat_id.'&text='.urlencode($message).'&parse_mode=markdown&disable_web_page_preview=true').' &');
 }
 
 function timeAgoLong($ptime) {
