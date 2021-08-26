@@ -59,7 +59,7 @@
 		$newestEpoch=$query->fetchAll(PDO::FETCH_ASSOC)[0]['epoch'];
 		if($newestEpoch<strtotime("-6 months") && filemtime(__DIR__.'/../data/lastAdminTelegramTimestampAlertedAboutOldData.txt')<strtotime("-7 days")) { /* alert weekly after old data */
 			file_put_contents(__DIR__.'/../data/lastAdminTelegramTimestampAlertedAboutOldData.txt','1');
-			sendToAdminTelegram("📈 InflationChart.com: source data is ".timeAgoLong($newestEpoch)." old, time to update maybe? Thanks!");
+			sendToAdminTelegram("📈 InflationChart.com: source data is ".timeAgoLong($newestEpoch)." old, time to update https://docs.google.com/spreadsheets/d/1xJGrHWj6uO6ykFPvht-RBG5qlLeO0axraxUJ9UzOhFo/edit#gid=347952624");
 		}
 	// </add reminder for stale data>
 
