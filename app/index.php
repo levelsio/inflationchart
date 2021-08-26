@@ -57,7 +57,7 @@
 		$query=$db->prepare("SELECT epoch FROM inflationchart WHERE epoch IS NOT NULL AND epoch IS NOT '' ORDER BY epoch DESC");
 		$query->execute();
 		$newestEpoch=$query->fetchAll(PDO::FETCH_ASSOC)[0]['epoch'];
-		if($newestEpoch<strtotime("-140 days") && filemtime(__DIR__.'/../data/lastAdminTelegramTimestampAlertedAboutOldData.txt')<strtotime("-24 hours")) { /* alert after 1.5mo of old data */
+		if($newestEpoch<strtotime("-6 months") && filemtime(__DIR__.'/../data/lastAdminTelegramTimestampAlertedAboutOldData.txt')<strtotime("-7 days")) { /* alert weekly after old data */
 			file_put_contents(__DIR__.'/../data/lastAdminTelegramTimestampAlertedAboutOldData.txt','1');
 			sendToAdminTelegram("📈 InflationChart.com: source data is ".timeAgoLong($newestEpoch)." old, time to update maybe? Thanks!");
 		}
