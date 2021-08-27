@@ -110,6 +110,7 @@
 			'us10y'=>'%',
 			'rent'=>'$/mo',
 			'coffee'=>'$/lbs',
+			'levelsio'=>'/y',
 		);
 
 		$adjusters=array(
