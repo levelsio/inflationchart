@@ -17,8 +17,8 @@
 		$inflationchartDb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		if (!$inflationchartDb) exit(68); /* db error */
 		
-		// $query = $inflationchartDb->prepare('DELETE from inflationchart');
-		// $query->execute();
+		$query = $inflationchartDb->prepare('DELETE from inflationchart');
+		$query->execute();
 
 		$feed = 'https://docs.google.com/spreadsheets/d/1xJGrHWj6uO6ykFPvht-RBG5qlLeO0axraxUJ9UzOhFo/export?format=csv&gid=347952624';
 		$keys = array();
