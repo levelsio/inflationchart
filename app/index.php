@@ -105,7 +105,7 @@
 			'tsla'=>'🚗 $TSLA',
 			'levelsio'=>'👦🏼 levelsio',
 		);
-
+		
 		$suffix=array(
 			'us10y'=>'%',
 			'rent'=>'$/mo',
